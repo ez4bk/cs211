@@ -7,14 +7,14 @@ int main () {
     int* pointer1 = pointer0;
 
     *pointer0 = 100;
-    printf("*pointer1 = %d\n", *pointer0);
+    printf("*pointer1 = %d\n", *pointer1);
 
     *pointer0 = 10;
-    printf("*pointer1 = %d\n", *pointer0);
+    printf("*pointer1 = %d\n", *pointer1);
 
     free(pointer0);
 
     *pointer1 = 1;
-    printf("*pointer1 = %d\n", *pointer0);
+    printf("*pointer1 = %d\n", *pointer1);
 
 }

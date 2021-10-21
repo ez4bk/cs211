@@ -24,13 +24,21 @@ BSTNode* insert ( BSTNode* root, int key ) {
     }
 
     // If the BSTNode already exists, then insert key in correct subtree
-    // ...
+    if (key<root->key){
+        root->l_child = insert(root->l_child, key);
+    }else if (key==root->key){
+        //Nothing happened
+    }else { // key>root->key
+        root->r_child = insert(root->r_child, key);
+    }
     return root;
 }
 
 // Delete the BST using recursion
 void delete ( BSTNode* root ) {
-    // ...
+    if (root->l_child) delete(root->l_child);
+    if (root->r_child) delete(root->r_child);
+    free (root);
 }
 
 
@@ -55,9 +63,12 @@ Queue enqueue ( Queue queue, BSTNode* data ) {
     queueNode->next = NULL; // At back of the queue, there is no next node.
 
     if (queue.back==NULL) { // If the Queue is currently empty
-        // ...
+        queue.front = queueNode;
+        queue.back = queueNode;
     } else {
-        // ...
+        (*queue.back).next = queueNode;
+        //queue.back->next
+        queue.back = queueNode;
     }
 
     return queue;
@@ -103,7 +114,13 @@ int main ( int argc, char* argv[] ) {
 
     // USE A QUEUE TO PERFORM LEVEL ORDER TRAVERSAL
     Queue queue = { .front=NULL, .back=NULL };
-    // ...
+    BSTNode* currBSTNode = root;
+    do {
+        if (currBSTNode!=NULL) printf("%d\n", currBSTNode->key);
+        if (currBSTNode->l_child!=NULL) queue = enqueue(queue, currBSTNode);
+        if (currBSTNode->r_child!=NULL) queue = enqueue(queue, currBSTNode);
+        currBSTNode = dequeue(&queue);
+    } while (currBSTNode!=NULL);
 
     delete(root);
     return EXIT_SUCCESS;

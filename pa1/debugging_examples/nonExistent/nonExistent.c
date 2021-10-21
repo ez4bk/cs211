@@ -3,13 +3,16 @@
 
 int main () {
 
+  int *x = malloc(sizeof(int));
   int **x = malloc(sizeof(int*));
-
+  
   **x = 8;
+  
 
   printf("x = %p\n", x);
   printf("*x = %p\n", *x);
   printf("**x = %d\n", **x);
   fflush(stdout);
-
+  free(x);
+  free(*x);
 }

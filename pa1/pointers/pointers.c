@@ -46,6 +46,7 @@ int main() {
   printf ("\n\nLESSON 6: ARRAYS\n");
   int array_size = 3;
   int* array = malloc(array_size*sizeof(int));
+  
   for (int i=0; i<array_size; i++) {
     printf("array+%d = %ld\n", i, (long int) (array+i));
   }
